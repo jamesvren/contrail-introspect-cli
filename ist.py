@@ -327,9 +327,12 @@ class Introspect:
                         path_info += "via %s, " % (itf)
 
                     elif nh_type == "arp":
-                        mac = nh.find('mac').text
-                        itf = nh.find("itf").text
-                        path_info += "via %s, " % (mac)
+                        try:
+                            mac = nh.find('mac').text
+                            itf = nh.find("itf").text
+                            path_info += "via %s, " % (mac)
+                        except:
+                            pass
 
                     elif 'Composite' in str(nh_type):
                         comp_nh = str(nh.xpath(".//itf/text()"))
